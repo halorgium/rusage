@@ -5,7 +5,8 @@ require 'hoe'
 
 Hoe.spec 'rusage' do
   developer('Ben Sandofsky', 'ben@sandofsky.com')
-  # self.rubyforge_name = 'rusagex' # if different than 'rusage'
+  self.version = "0.1.0"
+  self.spec_extras = { :extensions => ["ext/rusage/extconf.rb"] }
 end
 
 # vim: syntax=ruby

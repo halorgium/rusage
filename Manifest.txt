@@ -3,5 +3,5 @@ History.txt
 Manifest.txt
 README.txt
 Rakefile
-ext/extconf.rb
-ext/rusage.c
+ext/rusage/extconf.rb
+ext/rusage/rusage.c
