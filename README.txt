@@ -1,3 +1,7 @@
+= rusage
+
+* http://github.com/sandofsky/rusage
+
 == DESCRIPTION:
 
 A gem that calls getrusage to get details on the current process.
