@@ -1,3 +1,4 @@
+// VERSION = "0.1.0"
 #include <ruby.h>
 #include <sys/resource.h>
 VALUE v_usage_struct;
