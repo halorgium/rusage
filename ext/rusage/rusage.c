@@ -2,8 +2,7 @@
 #include <ruby.h>
 #include <sys/resource.h>
 VALUE v_usage_struct;
-static VALUE rusage_get(int argc, VALUE* argv, VALUE mod){
-  int who = RUSAGE_SELF;
+static VALUE do_rusage_get(int who){
   struct rusage r;
   int ret;
   
@@ -30,6 +29,12 @@ static VALUE rusage_get(int argc, VALUE* argv, VALUE mod){
       LONG2NUM(r.ru_nivcsw)
    );
 }
+static VALUE rusage_get(int argc, VALUE* argv, VALUE mod){
+  return do_rusage_get(RUSAGE_SELF);
+}
+static VALUE crusage_get(int argc, VALUE* argv, VALUE mod){
+  return do_rusage_get(RUSAGE_CHILDREN);
+}
 void Init_rusage(){
   v_usage_struct =
      rb_struct_define("RUsage","utime","stime","maxrss","ixrss","idrss",
@@ -38,4 +43,5 @@ void Init_rusage(){
      );
 
   rb_define_module_function(rb_mProcess, "rusage", rusage_get, -1);
+  rb_define_module_function(rb_mProcess, "crusage", crusage_get, -1);
 }
