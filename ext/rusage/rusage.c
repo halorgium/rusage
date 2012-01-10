@@ -36,12 +36,16 @@ static VALUE crusage_get(int argc, VALUE* argv, VALUE mod){
   return do_rusage_get(RUSAGE_CHILDREN);
 }
 void Init_rusage(){
+  VALUE mProcess;
+
   v_usage_struct =
      rb_struct_define("RUsage","utime","stime","maxrss","ixrss","idrss",
         "isrss","minflt","majflt","nswap","inblock","oublock","msgsnd",
         "msgrcv","nsignals","nvcsw","nivcsw",NULL
      );
 
-  rb_define_module_function(rb_mProcess, "rusage", rusage_get, -1);
-  rb_define_module_function(rb_mProcess, "crusage", crusage_get, -1);
+  mProcess = rb_const_get(rb_cObject, rb_intern("Process"));
+
+  rb_define_module_function(mProcess, "rusage", rusage_get, -1);
+  rb_define_module_function(mProcess, "crusage", crusage_get, -1);
 }
